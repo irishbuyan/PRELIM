@@ -1,0 +1,108 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | My Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-indigo-600">MyPremiumSite</h1>
+
+            <div class="space-x-4">
+                <a href="/" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" 
+                       class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                       Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" 
+                       class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                       Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Welcome, ADMIN!
+            </h2>
+
+            {% if user.is_authenticated %}
+                <p class="text-lg mb-6">
+                    Hello, <span class="font-semibold">{{ user.username }}</span> 👋
+                </p>
+            {% else %}
+                <p class="text-lg mb-6">
+                    Please login to access your personalized dashboard.
+                </p>
+            {% endif %}
+
+            <a href="{% url 'login' %}" 
+               class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-xl shadow-lg hover:scale-105 transition transform">
+               Irish
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                Our Features
+            </h3>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-indigo-600 text-4xl mb-4">🚀</div>
+                    <h4 class="text-xl font-semibold mb-2">Fast Performance</h4>
+                    <p class="text-gray-600">
+                        Optimized system built with Django for smooth and fast experience.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-purple-600 text-4xl mb-4">🔒</div>
+                    <h4 class="text-xl font-semibold mb-2">Secure Login</h4>
+                    <p class="text-gray-600">
+                        Authentication system with secure login and logout functionality.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-pink-600 text-4xl mb-4">📊</div>
+                    <h4 class="text-xl font-semibold mb-2">Admin Dashboard</h4>
+                    <p class="text-gray-600">
+                        Manage your data easily using Django Admin panel.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-6">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+
+        </div>
+    </footer>
+
+</body>
+</html>
